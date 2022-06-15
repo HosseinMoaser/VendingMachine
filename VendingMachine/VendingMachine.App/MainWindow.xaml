@@ -1,0 +1,36 @@
+﻿<Window x:Class="VendingMachine.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VendingMachine.App" xmlns:views="clr-namespace:VendingMachine.App.Views"
+        mc:Ignorable="d" FontSize ="14"
+        Title="Vending Machine" Height="500" Width="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="E-Corp Vendin Machine" Style="{StaticResource PageHeader}" Margin="5"/>
+            <Ellipse Grid.Column="1" Height="40" Width="40" HorizontalAlignment="Right" Margin="5 0">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/Assets/avatar.png"/>
+
+                </Ellipse.Fill>
+            </Ellipse>
+            <TextBlock Grid.Column="1" Text="UserName" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="55 0"
+                       FontSize="22" FontWeight="Bold"/>
+
+            <Separator Grid.ColumnSpan="2" Background="Red" VerticalAlignment="Bottom"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="20 5">
+            <views:HomeView DataContext="{Binding HomeViewModel}"/>
+        </Grid>
+    </Grid>
+</Window>

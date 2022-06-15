@@ -13,7 +13,13 @@
                         <VisualBrush Visual="{Binding ElementName=border}" />
                     </Grid.OpacityMask>
                     <Border x:Name="border" Background="White" CornerRadius="5"/>
-                <ListView BorderThickness="0" ItemsSource="{Binding ProductsListingItemViewModels}">
+                <ListView BorderThickness="0" ItemsSource="{Binding ProductsListingItemViewModels}" SelectionMode="Single"
+                          SelectedItem="{Binding SelectedProductsListingItemViewModel}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Margin" Value="5"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -26,8 +32,7 @@
                                         <ImageBrush/>
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <TextBlock Grid.Column="1" Text="{Binding ProductName}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"
-                                         TextAlignment="Justify"/>
+                                <TextBlock Grid.Column="1" Text="{Binding ProductName}" FontSize="16" FontWeight="Bold"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

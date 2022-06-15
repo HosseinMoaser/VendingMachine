@@ -9,49 +9,74 @@
     <Grid>
         <Border BorderBrush="{StaticResource BorderPrimary}" BorderThickness="1" CornerRadius="5" 
                 Padding="20" SnapsToDevicePixels="True">
-            <Grid Grid.IsSharedSizeScope="True">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                
-                <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock x:Name="TxbTitle" Grid.Row="0" Text="Hot Chocolate" FontSize="24" FontWeight="Bold"/>
-                    <Grid Grid.Row="1">
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Grid>
+            <Grid>
+                <Grid>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasSelectedProduct}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <TextBlock  Grid.Row="0" Text="Please Select An Order...!" FontSize="24" FontWeight="Bold"/>
                 </Grid>
 
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="{Binding ElementName=TxbTitle, Path=ActualHeight}"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="1">
+                <Grid Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Price: " FontSize="18" FontWeight="Bold"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Estimated Time: " FontSize="18" FontWeight="Bold"/>
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Bevareage Type: " FontSize="18" FontWeight="Bold"/>
+                        <TextBlock x:Name="TxbTitle" Grid.Row="0" Text="{Binding ProductName}" FontSize="24" FontWeight="Bold"/>
+                        <Grid Grid.Row="1">
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                    </Grid>
 
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="50$ " FontSize="18"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="10 sec " FontSize="18"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" Text="Cold " FontSize="18"/>
+                    <Grid Grid.Column="1">
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasSelectedProduct}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{Binding ElementName=TxbTitle, Path=ActualHeight}"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Price: " FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Estimated Time: " FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Category: " FontSize="18" FontWeight="Bold"/>
+
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Price}" FontSize="16" FontWeight="Bold" Margin="10 0"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding EstimatedTime}" FontSize="16" FontWeight="Bold" Margin="10 0"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Category}" FontSize="16" FontWeight="Bold" Margin="10 0"/>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

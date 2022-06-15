@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachine.App.Models;
 
 namespace VendingMachine.App.ViewModels
 {
     public class ProductsListingItemViewModel : BaseViewModel
     {
-        public string ProductName { get;}
-        public string ImageAddress { get;}
+        public Product Product { get; }
 
-        public ProductsListingItemViewModel(string productName, string imageAddress)
+        public string ProductName => Product.ProductName;
+        public string ImageName => Product.ImageName;
+        public string ProductPrice => Product.ProductPrice;
+        public string ProductCategory => Product.ProductCategory;
+        public string EstimatedTime => Product.EstimatedTime;
+
+        public ProductsListingItemViewModel(Product product)
         {
-            ProductName = productName;
-            ImageAddress = imageAddress;
+            Product = product;
         }
     }
 }

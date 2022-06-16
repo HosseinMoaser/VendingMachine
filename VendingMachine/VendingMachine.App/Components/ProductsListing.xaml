@@ -29,7 +29,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Ellipse Grid.Column="0" Height="45" Width="45" VerticalAlignment="Center">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="/Assets/white_coffee.jpg"/>
+                                        <ImageBrush ImageSource="/Images/white_coffee.jpg"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <TextBlock Grid.Column="1" Style="{StaticResource RegularTextBlock}" Text="{Binding ProductName}" 

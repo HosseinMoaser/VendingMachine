@@ -33,10 +33,10 @@ namespace VendingMachine.App.ViewModels
         public ProductsListingViewModel(SelectedProductStore selectedProductStore)
         {
             _productsListingItemViewModels = new ObservableCollection<ProductsListingItemViewModel>();
-            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Hot Chocolate", "50$","Cold","10 sec","avatar")));
-            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Coffee", "40$", "Hot", "14 sec", "avatar")));
-            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Iced Tea", "55$", "Cold", "18 sec", "avatar")));
-            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Lemon Tea", "34$", "Hot", "16 sec", "avatar")));
+            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Hot Chocolate", "50$","Cold","10 sec", "/Images/white_coffee.jpg")));
+            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Coffee", "40$", "Hot", "14 sec", "white_coffee.jpg")));
+            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Iced Tea", "55$", "Cold", "18 sec", "white_coffee.jpg")));
+            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Lemon Tea", "34$", "Hot", "16 sec", "lemon_tea.jpg")));
             _selectedProductStore = selectedProductStore;
         }
 

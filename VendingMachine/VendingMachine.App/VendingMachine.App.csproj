@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\avatar.png" />
-    <None Remove="Assets\lemon_tea.jpg" />
-    <None Remove="Assets\SimpleLogo.png" />
-    <None Remove="Assets\white_coffee.jpg" />
+    <None Remove="Images\avatar.png" />
+    <None Remove="Images\lemon_tea.jpg" />
+    <None Remove="Images\SimpleLogo.png" />
+    <None Remove="Images\white_coffee.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,12 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\avatar.png">
+    <Resource Include="Images\avatar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Assets\lemon_tea.jpg" />
-    <Resource Include="Assets\SimpleLogo.png" />
-    <Resource Include="Assets\white_coffee.jpg" />
+    <Resource Include="Images\lemon_tea.jpg" />
+    <Resource Include="Images\SimpleLogo.png" />
+    <Resource Include="Images\white_coffee.jpg" />
   </ItemGroup>
 
 </Project>

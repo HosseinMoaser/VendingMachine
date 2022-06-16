@@ -13,10 +13,11 @@ namespace VendingMachine.App.Commands
     public class PrepareOrderCommand : ICommand
     {
         private readonly ModalNavigationStore _modalNavigationStore;
-
-        public PrepareOrderCommand(ModalNavigationStore modalNavigationStore)
+        private readonly ProductsListingViewModel _productsListingViewModel;
+        public PrepareOrderCommand(ModalNavigationStore modalNavigationStore, ProductsListingViewModel productsListingViewModel)
         {
             _modalNavigationStore = modalNavigationStore;
+            _productsListingViewModel = productsListingViewModel;
         }
 
         public event EventHandler? CanExecuteChanged;
@@ -29,7 +30,11 @@ namespace VendingMachine.App.Commands
         public void Execute(object? parameter)
         {
             ICommand backToHomeCommand = new BackFromModalCommand(_modalNavigationStore);
-            OrderPageViewModel orderViewModel = new OrderPageViewModel(null, backToHomeCommand);
+            OrderPageViewModel orderViewModel = new OrderPageViewModel(null, backToHomeCommand)
+            {
+                ImageName = _productsListingViewModel.SelectedProductsListingItemViewModel.ImageName,
+                ProductName = _productsListingViewModel.SelectedProductsListingItemViewModel.ProductName,
+            };
             _modalNavigationStore.CurrentViewModel = orderViewModel;
         }
     }

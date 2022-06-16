@@ -48,7 +48,7 @@
                         <Grid Grid.Row="1" Margin="5 20">
                             <Ellipse Width="200" Height="200" VerticalAlignment="Top">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Assets/Lemon_Tea.jpg"/>
+                                    <ImageBrush ImageSource="/Images/Lemon_Tea.jpg"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Grid>

@@ -19,7 +19,7 @@ namespace VendingMachine.App.ViewModels
         {
             ProductDetailViewModel = new ProductDetailViewModel(_selectedProductStore);
             ProductsListingViewModel = new ProductsListingViewModel(_selectedProductStore);
-            PrepareOrderCommand = new PrepareOrderCommand(modalNavigationStore);
+            PrepareOrderCommand = new PrepareOrderCommand(modalNavigationStore, ProductsListingViewModel);
         }
     }
 }

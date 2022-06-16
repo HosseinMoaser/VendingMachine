@@ -8,10 +8,16 @@
 
             <Style x:Key="PageHeader" TargetType="TextBlock">
                 <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="FontFamily" Value="Comic Sans MS"/>
                 <Setter Property="FontSize" Value="22" />
-                <Setter Property="FontWeight" Value="Bold" />
             </Style>
 
+            <Style TargetType="TextBlock" x:Key="RegularTextBlock">
+                <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+            
             <Style TargetType="Button">
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="Background" Value="#547AFF" />
@@ -20,7 +26,6 @@
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
                 <Setter Property="TextBlock.TextAlignment" Value="Center" />
-
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -59,7 +64,7 @@
             <Style x:Key="ButtonSecondary" BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
                 <Setter Property="Foreground" Value="Black" />
                 <Setter Property="Background" Value="#E1E1E1" />
-
+                <Setter Property="FontFamily" Value="Comic Sans MS"/>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Trigger.EnterActions>
@@ -78,6 +83,12 @@
                         </Trigger.ExitActions>
                     </Trigger>
                 </Style.Triggers>
+            </Style>
+
+            <Style TargetType="ListViewItem">
+                <Setter Property="Focusable" Value="False"/>
+                <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                <Setter Property="FontSize" Value="14"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

@@ -21,10 +21,20 @@
                             </Style.Triggers>
                         </Style>
                     </Grid.Style>
-                    <TextBlock  Grid.Row="0" Text="Please Select An Order...!" FontSize="24" FontWeight="Bold"/>
+                    <TextBlock  Grid.Row="0" Text="Please Select An Order...!" FontSize="20" FontWeight="Bold" FontFamily="Comic Sans MS"/>
                 </Grid>
 
                 <Grid Grid.IsSharedSizeScope="True">
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasSelectedProduct}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
@@ -34,27 +44,17 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock x:Name="TxbTitle" Grid.Row="0" Text="{Binding ProductName}" FontSize="24" FontWeight="Bold"/>
-                        <Grid Grid.Row="1">
-                            <Ellipse>
+                        <TextBlock x:Name="TxbTitle" Style="{StaticResource PageHeader}" Grid.Row="0" Text="{Binding ProductName}" FontSize="20" FontWeight="Bold" Margin="5 0"/>
+                        <Grid Grid.Row="1" Margin="5 20">
+                            <Ellipse Width="200" Height="200" VerticalAlignment="Top">
                                 <Ellipse.Fill>
-                                    <ImageBrush/>
+                                    <ImageBrush ImageSource="/Assets/Lemon_Tea.jpg"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Grid>
                     </Grid>
 
-                    <Grid Grid.Column="1">
-                        <Grid.Style>
-                            <Style TargetType="Grid">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding HasSelectedProduct}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Grid.Style>
+                    <Grid Grid.Column="1" Margin="10 40">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="{Binding ElementName=TxbTitle, Path=ActualHeight}"/>
                             <RowDefinition Height="auto"/>
@@ -69,13 +69,13 @@
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Price: " FontSize="18" FontWeight="Bold"/>
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Estimated Time: " FontSize="18" FontWeight="Bold"/>
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Category: " FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="0" Style="{StaticResource RegularTextBlock}" Text="Price: " FontSize="18" FontWeight="Bold" Margin="10"/>
+                            <TextBlock Grid.Row="1" Style="{StaticResource RegularTextBlock}" Text="Estimated Time: " FontSize="18" FontWeight="Bold" Margin="10"/>
+                            <TextBlock Grid.Row="2" Style="{StaticResource RegularTextBlock}" Text="Category: " FontSize="18" FontWeight="Bold" Margin="10"/>
 
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Price}" FontSize="16" FontWeight="Bold" Margin="10 0"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding EstimatedTime}" FontSize="16" FontWeight="Bold" Margin="10 0"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Category}" FontSize="16" FontWeight="Bold" Margin="10 0"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource RegularTextBlock}" Text="{Binding Price}" FontSize="16" FontWeight="Bold" Margin="10"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource RegularTextBlock}" Text="{Binding EstimatedTime}" FontSize="16" FontWeight="Bold" Margin="10"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource RegularTextBlock}" Text="{Binding Category}" FontSize="16" FontWeight="Bold" Margin="10"/>
                         </Grid>
                     </Grid>
                 </Grid>

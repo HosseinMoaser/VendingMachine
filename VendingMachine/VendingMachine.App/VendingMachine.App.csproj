@@ -10,6 +10,8 @@
   <ItemGroup>
     <None Remove="Assets\avatar.png" />
     <None Remove="Assets\lemon_tea.jpg" />
+    <None Remove="Assets\SimpleLogo.png" />
+    <None Remove="Assets\white_coffee.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +23,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\lemon_tea.jpg" />
+    <Resource Include="Assets\SimpleLogo.png" />
+    <Resource Include="Assets\white_coffee.jpg" />
   </ItemGroup>
 
 </Project>

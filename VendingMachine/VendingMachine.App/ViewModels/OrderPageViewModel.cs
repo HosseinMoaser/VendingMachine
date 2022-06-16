@@ -42,6 +42,7 @@ namespace VendingMachine.App.ViewModels
         }
 
         private bool _isCompleted;
+
         public bool IsCompleted
         {
             get { return _isCompleted; }
@@ -54,7 +55,13 @@ namespace VendingMachine.App.ViewModels
         }
 
         public bool CanBackHome => IsCompleted || IsCanceled;
-        ICommand CancelOrderCommand { get; }
-        ICommand BackToHomeCommand { get; }
+        public ICommand CancelOrderCommand { get; }
+        public ICommand BackToHomeCommand { get; }
+
+        public OrderPageViewModel(ICommand cancelOrderCommand, ICommand backToHomeCommand)
+        {
+            CancelOrderCommand = cancelOrderCommand;
+            BackToHomeCommand = backToHomeCommand;
+        }
     }
 }

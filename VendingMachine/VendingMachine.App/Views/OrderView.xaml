@@ -16,7 +16,7 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <TextBlock Text="Please Wait While Your Order Being Prepared.." Style="{StaticResource PageHeader}" FontSize="16"/>
-                    <Button HorizontalAlignment="Right" Content="Back" IsEnabled="{Binding CanBackHome}"/>
+                    <Button HorizontalAlignment="Right" Content="Back" Command="{Binding BackToHomeCommand}" FontFamily="Comic Sans MS"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -31,14 +31,18 @@
                         </Ellipse>
                     </Grid>
                     <Grid Grid.Column="1">
-                        <ListView HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" BorderThickness="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="569*"/>
+                            <ColumnDefinition Width="29*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListBox HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" BorderThickness="0">
                             <ListViewItem Content="Add Boil Water"/>
                             <ListViewItem Content="Add Coffee"/>
                             <ListViewItem Content="Add Milk"/>
                             <ListViewItem Content="Add Lemon"/>
                             <ListViewItem Content="Delivery"/>
-                        </ListView>
-                        <Button Content="Cancel Order" Style="{StaticResource ButtonSecondary}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                        </ListBox>
+                        <Button Content="Cancel Order" Style="{StaticResource ButtonSecondary}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.ColumnSpan="2"/>
                     </Grid>
                 </Grid>
             </Grid>

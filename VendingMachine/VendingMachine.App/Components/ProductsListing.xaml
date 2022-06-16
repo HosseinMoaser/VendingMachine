@@ -4,16 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VendingMachine.App.Components"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
             <Border BorderBrush="{StaticResource BorderPrimary}" BorderThickness="1" CornerRadius="5" SnapsToDevicePixels="True">
-                <Grid>
-                    <Grid.OpacityMask>
-                        <VisualBrush Visual="{Binding ElementName=border}" />
-                    </Grid.OpacityMask>
-                    <Border x:Name="border" Background="White" CornerRadius="5"/>
-                <ListView BorderThickness="0" ItemsSource="{Binding ProductsListingItemViewModels}" SelectionMode="Single"
+            <Grid>
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=border}" />
+                </Grid.OpacityMask>
+                <Border x:Name="border" Background="White" CornerRadius="5"/>
+                <ListView BorderThickness="0" ItemsSource="{Binding ProductsListingItemViewModels}" SelectionMode="Single" VerticalAlignment="Center"
                           SelectedItem="{Binding SelectedProductsListingItemViewModel}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
@@ -22,23 +22,23 @@
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="70">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Ellipse Grid.Column="0" Height="45" Width="45" VerticalAlignment="Center">
                                     <Ellipse.Fill>
-                                        <ImageBrush/>
+                                        <ImageBrush ImageSource="/Assets/white_coffee.jpg"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <TextBlock Grid.Column="1" Text="{Binding ProductName}" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="1" Style="{StaticResource RegularTextBlock}" Text="{Binding ProductName}" 
+                                           FontSize="16" VerticalAlignment="Center" Margin="20"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                </Grid>
-                
-            </Border>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

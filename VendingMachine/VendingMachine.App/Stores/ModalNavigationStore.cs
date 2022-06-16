@@ -24,5 +24,10 @@ namespace VendingMachine.App.Stores
         }
 
         public event Action CurrentViewModelChanged;
+
+        public void Close()
+        {
+            CurrentViewModel = null;
+        }
     }
 }

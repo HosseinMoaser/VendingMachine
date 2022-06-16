@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using VendingMachine.App.Models;
+using VendingMachine.Domain.Models;
 using VendingMachine.App.Stores;
 using VendingMachine.App.ViewModels;
 

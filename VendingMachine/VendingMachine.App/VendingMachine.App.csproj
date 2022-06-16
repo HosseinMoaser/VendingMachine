@@ -19,6 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VendingMachine.DataLayer\VendingMachine.DataLayer.csproj" />
+    <ProjectReference Include="..\VendingMachine.Domain\VendingMachine.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\avatar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

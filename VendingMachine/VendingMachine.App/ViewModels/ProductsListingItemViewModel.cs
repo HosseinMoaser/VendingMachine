@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
-using VendingMachine.App.Models;
+using VendingMachine.Domain.Models;
 
 namespace VendingMachine.App.ViewModels
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VendingMachine.App.Models;
+using VendingMachine.Domain.Models;
 using VendingMachine.App.Stores;
 
 namespace VendingMachine.App.ViewModels

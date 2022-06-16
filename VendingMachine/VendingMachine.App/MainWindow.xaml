@@ -3,10 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:VendingMachine.App" xmlns:views="clr-namespace:VendingMachine.App.Views"
+        xmlns:local="clr-namespace:VendingMachine.App" 
+        xmlns:views="clr-namespace:VendingMachine.App.Views" 
+        xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
+        xmlns:viewmodels="clr-namespace:VendingMachine.App.ViewModels"
         mc:Ignorable="d" FontSize ="14"
-        Title="Vending Machine" Height="500" Width="700">
-    <Grid>
+        Title="Vending Machine" Height="600" Width="850">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}" >
+            <views:HomeView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodels:OrderPageViewModel}" >
+            <views:OrderView/>
+        </DataTemplate>
+    </Window.Resources>
+    
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+         <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -29,8 +44,13 @@
             <Separator Grid.ColumnSpan="2" Background="Red" VerticalAlignment="Bottom"/>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="20 5">
+        <Grid Grid.Row="1">
+                <custom:Modal Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
+                    <ContentControl Height="350" Width="550" Content="{Binding CurrentModalViewModel}"/>
+                </custom:Modal>
             <views:HomeView DataContext="{Binding HomeViewModel}"/>
+            <!--<views:OrderView/>-->
         </Grid>
     </Grid>
+    </ScrollViewer>
 </Window>

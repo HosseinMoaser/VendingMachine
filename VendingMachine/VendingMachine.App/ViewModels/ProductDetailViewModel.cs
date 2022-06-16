@@ -14,12 +14,12 @@ namespace VendingMachine.App.ViewModels
         private Product SelectedProduct => _selectedProductStore.SelectedProduct;
 
         public bool HasSelectedProduct => SelectedProduct != null;
-        public string ProductName => SelectedProduct?.ProductName;
-        public string Price => SelectedProduct?.ProductPrice;
-        public string EstimatedTime => SelectedProduct?.EstimatedTime;
-        public string Category => SelectedProduct?.ProductCategory;
+        public string ProductName => SelectedProduct?.ProductName??string.Empty;
+        public string Price => SelectedProduct?.ProductPrice ?? string.Empty;
+        public string EstimatedTime => SelectedProduct?.EstimatedTime ?? string.Empty;
+        public string Category => SelectedProduct?.ProductCategory ?? string.Empty;
 
-        public string ImageName => SelectedProduct?.ImageName;
+        public string ImageName => SelectedProduct?.ImageName ?? string.Empty;
 
         public ProductDetailViewModel(SelectedProductStore selectedProductStore)
         {

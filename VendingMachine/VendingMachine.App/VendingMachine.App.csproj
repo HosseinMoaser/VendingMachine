@@ -9,12 +9,18 @@
 
   <ItemGroup>
     <None Remove="Assets\avatar.png" />
+    <None Remove="Assets\lemon_tea.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SimpleModal.WPF" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\avatar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\lemon_tea.jpg" />
   </ItemGroup>
 
 </Project>

@@ -8,12 +8,8 @@
 
             <Style x:Key="PageHeader" TargetType="TextBlock">
                 <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="26" />
+                <Setter Property="FontSize" Value="22" />
                 <Setter Property="FontWeight" Value="Bold" />
-            </Style>
-
-            <Style x:Key="ErrorMessage" TargetType="TextBlock">
-                <Setter Property="Foreground" Value="Red" />
             </Style>
 
             <Style TargetType="Button">

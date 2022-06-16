@@ -9,11 +9,30 @@ namespace VendingMachine.App.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        public HomeViewModel HomeViewModel { get; set; }
+        public HomeViewModel HomeViewModel { get;  }
 
-        public MainWindowViewModel(SelectedProductStore _selectedProductStore)
+        private readonly ModalNavigationStore _modalNavigationStore;
+
+        public BaseViewModel CurrentModalViewModel => _modalNavigationStore.CurrentViewModel;
+        public bool IsModalOpen => _modalNavigationStore.IsOpen;
+
+        // MainViewModel Constructor
+        public MainWindowViewModel(HomeViewModel homeViewModel, ModalNavigationStore modalNavigationStore)
         {
-            HomeViewModel = new HomeViewModel(_selectedProductStore);
+            HomeViewModel = homeViewModel;
+            _modalNavigationStore = modalNavigationStore;
+            _modalNavigationStore.CurrentViewModelChanged += ModalNavigationStore_CurrentViewModelChanged;
+        }
+
+        protected override void Dispose()
+        {
+            _modalNavigationStore.CurrentViewModelChanged -= ModalNavigationStore_CurrentViewModelChanged;
+            base.Dispose();
+        }
+        private void ModalNavigationStore_CurrentViewModelChanged()
+        {
+            OnPropertyChanged(nameof(CurrentModalViewModel));
+            OnPropertyChanged(nameof(IsModalOpen));
         }
     }
 }

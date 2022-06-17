@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachine.App.State;
 using VendingMachine.App.Stores;
 
 namespace VendingMachine.App.ViewModels
@@ -10,9 +11,8 @@ namespace VendingMachine.App.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         public HomeViewModel HomeViewModel { get;  }
-
         private readonly ModalNavigationStore _modalNavigationStore;
-
+        public IAuthenticator Authenticator { get; set; }
         public BaseViewModel CurrentModalViewModel => _modalNavigationStore.CurrentViewModel;
         public bool IsModalOpen => _modalNavigationStore.IsOpen;
 

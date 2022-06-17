@@ -14,6 +14,9 @@ namespace VendingMachine.DataLayer
 
         public DbSet<User> Users { get; set; }
 
-        
+        public Task<User> FirstOrDefaultAsync(Func<object, bool> value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

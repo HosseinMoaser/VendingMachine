@@ -18,6 +18,7 @@ namespace VendingMachine.App.Commands
         }
 
         public event EventHandler? CanExecuteChanged;
+      
 
         public bool CanExecute(object? parameter)
         {
@@ -27,11 +28,13 @@ namespace VendingMachine.App.Commands
         public void Execute(object? parameter)
         {
             ICommand backToHomeCommand = new BackFromModalCommand(_modalNavigationStore);
-            OrderPageViewModel orderViewModel = new OrderPageViewModel(null, backToHomeCommand)
+            ICommand cancelOrderCommand = new CancelOrderCommand(_modalNavigationStore);
+            OrderPageViewModel orderViewModel = new OrderPageViewModel(cancelOrderCommand, backToHomeCommand)
             {
                 ImageSource = new BitmapImage(new Uri(Directory.GetCurrentDirectory() +
                 _productsListingViewModel.SelectedProductsListingItemViewModel.ImageName, UriKind.Relative)),
                 ProductName = _productsListingViewModel.SelectedProductsListingItemViewModel.ProductName,
+                IsCancelButtonVisible = true
             };
             _modalNavigationStore.CurrentViewModel = orderViewModel;
         }

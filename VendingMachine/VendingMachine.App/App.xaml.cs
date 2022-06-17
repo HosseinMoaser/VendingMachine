@@ -1,11 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using VendingMachine.App.Commands;
 using VendingMachine.App.HostBuilders;
+using VendingMachine.App.State;
 using VendingMachine.App.Stores;
 using VendingMachine.App.ViewModels;
 using VendingMachine.DataLayer;
+using VendingMachine.DataLayer.Models;
+using VendingMachine.Domain.Repositories;
+using VendingMachine.Domain.Services;
 
 namespace VendingMachine.App
 {
@@ -19,36 +28,57 @@ namespace VendingMachine.App
         public App()
         {
             _host = Host.CreateDefaultBuilder().
-                AddDBContext().AddStores()
+                AddDBContext().AddStores().AddViewModels()
                 .ConfigureServices((context, services) =>
-            {
-                services.AddSingleton<MainWindowViewModel>();
-                services.AddTransient<HomeViewModel>((services) => new HomeViewModel(services.GetRequiredService<SelectedProductStore>(),
-                    services.GetRequiredService<ModalNavigationStore>()));
-
+            {               
+                services.AddSingleton<IAuthenticationServices, AuthenticationServices>();
+                services.AddSingleton<IAuthenticator, Authenticator>();
+                services.AddSingleton<Authenticator>();
+                services.AddScoped<DataServices>();
                 services.AddSingleton<MainWindow>((services) => new MainWindow()
                 {
                     DataContext = services.GetRequiredService<MainWindowViewModel>()
-                });
+                }) ;
             }).Build();
 
         }
-        protected override void OnStartup(StartupEventArgs e)
+        protected async override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
             // Apply migration using host services
             VendingMachineDBContextFactory contextFactory = _host.Services.GetRequiredService<VendingMachineDBContextFactory>();
+            IAuthenticator authenticator = _host.Services.GetRequiredService<Authenticator>();
+
             using (VendingMachineDBContext context = contextFactory.CreateDBContext())
             {
                 context.Database.Migrate();
             }
 
+            await AddSampleUser();
 
-            MainWindow = _host.Services.GetRequiredService<MainWindow>();
-            MainWindow.Show();
-            base.OnStartup(e);
+            
+            if (authenticator.Login("HosseinMsr", "12345"))
+            {
+                MainWindow = _host.Services.GetRequiredService<MainWindow>();
+                ((MainWindowViewModel)MainWindow.DataContext).Authenticator = authenticator;
+                MainWindow.Show();
+                base.OnStartup(e);
+            }
+            else
+            {
+                MessageBox.Show("Username Or Password Are Wrong...!");
+                Current.Shutdown();
+            }
+
         }
 
+        private async Task AddSampleUser()
+        {
+            IDataServices dataServices = _host.Services.GetRequiredService<DataServices>();
+             IEnumerable<User> users = await dataServices.GetAllUsers();
+            if (!users.Any())
+                await dataServices.Create(new User() { UserName="HosseinMsr",Passwword="12345"});
+        }
         protected override void OnExit(ExitEventArgs e)
         {
             _host.StopAsync();

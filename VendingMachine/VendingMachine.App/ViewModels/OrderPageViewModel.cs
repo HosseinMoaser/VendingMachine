@@ -39,11 +39,24 @@ namespace VendingMachine.App.ViewModels
             set
             {
                 _isCanceled = value;
+                IsCancelButtonVisible = !value;
                 OnPropertyChanged(nameof(IsCanceled));
                 OnPropertyChanged(nameof(CanBackHome));
             }
         }
-
+        private bool _isCancelButtonVisible;
+        public bool IsCancelButtonVisible
+        {
+            get
+            {
+                return _isCancelButtonVisible;
+            }
+            set
+            {
+                _isCancelButtonVisible = value;
+                OnPropertyChanged(nameof(IsCancelButtonVisible));
+            }
+        }
         private bool _isCompleted;
 
         public bool IsCompleted
@@ -56,7 +69,7 @@ namespace VendingMachine.App.ViewModels
                 OnPropertyChanged(nameof(CanBackHome));
             }
         }
-
+        
         public bool CanBackHome => IsCompleted || IsCanceled;
         public ICommand CancelOrderCommand { get; }
         public ICommand BackToHomeCommand { get; }

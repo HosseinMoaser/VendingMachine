@@ -9,7 +9,9 @@
         xmlns:viewmodels="clr-namespace:VendingMachine.App.ViewModels" 
         xmlns:components="clr-namespace:VendingMachine.App.Components"
         mc:Ignorable="d" FontSize ="14" Icon="/Images/SimpleLogo.png"
+        WindowStartupLocation="CenterScreen"
         Title="Vending Machine" Height="600" Width="850">
+    
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}" >
             <views:HomeView/>
@@ -18,6 +20,7 @@
         <DataTemplate DataType="{x:Type viewmodels:OrderPageViewModel}" >
             <views:OrderView/>
         </DataTemplate>
+
     </Window.Resources>
 
 
@@ -32,15 +35,15 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="E-Corp Vendin Machine" Style="{StaticResource PageHeader}" Margin="5 10"/>
+                <TextBlock Grid.Column="0" Text="E-Corp Vending Machine" Style="{StaticResource PageHeader}" Margin="5 10"/>
                 <Ellipse Grid.Column="1" Height="40" Width="40" HorizontalAlignment="Right" Margin="5 0">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="/Images/avatar.png"/>
 
                     </Ellipse.Fill>
                 </Ellipse>
-                <TextBlock Grid.Column="1" Style="{StaticResource PageHeader}" Text="UserName" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="55 0"
-                       FontSize="18"/>
+                <TextBlock Grid.Column="1" Style="{StaticResource PageHeader}"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="55 0"
+                       FontSize="18" Text="{Binding Authenticator.User.UserName}"/>
 
                 <Separator Grid.ColumnSpan="2" Background="Red" VerticalAlignment="Bottom"/>
             </Grid>

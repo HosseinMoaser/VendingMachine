@@ -32,7 +32,9 @@
             <components:ProductsDetails Grid.Column="1" Margin="10" DataContext="{Binding ProductDetailViewModel}"/>
         </Grid>
 
-        <Button Grid.Row="2" Content="Prepare Order" Margin="5" HorizontalAlignment="Right" Command="{Binding PrepareOrderCommand}"
-                FontFamily="Comic Sans MS"/>
+            <Button Grid.Row="2" Content="Prepare Order" Margin="5" HorizontalAlignment="Right" Command="{Binding PrepareOrderCommand}"
+                FontFamily="Comic Sans MS" IsEnabled="{Binding ProductsListingViewModel.IsSelected}" Cursor="Hand"/>
+
+        
     </Grid>
 </UserControl>

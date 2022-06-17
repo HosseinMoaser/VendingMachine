@@ -2,7 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VendingMachine.App.Stores;
+using VendingMachine.App.ViewModels;
 using VendingMachine.DataLayer;
+using VendingMachine.Domain.Repositories;
+using VendingMachine.Domain.Services;
 
 namespace VendingMachine.App.HostBuilders
 {
@@ -14,7 +17,7 @@ namespace VendingMachine.App.HostBuilders
             {
                 string connectionString = "Data Source = VendingMachineDB.db";
                 services.AddSingleton<VendingMachineDBContextFactory>();
-                services.AddSingleton<DbContextOptions>(new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
+                services.AddSingleton<DbContextOptions>(new DbContextOptionsBuilder().UseSqlite(connectionString).Options);                
             });
             return hostBuilder;
         }
@@ -25,6 +28,16 @@ namespace VendingMachine.App.HostBuilders
             {
                 services.AddSingleton<ModalNavigationStore>();
                 services.AddSingleton<SelectedProductStore>();
+            });
+            return hostBuilder;
+        }
+
+        public static IHostBuilder AddViewModels(this IHostBuilder hostBuilder)
+        {
+            hostBuilder.ConfigureServices((context, services) =>
+            {
+                services.AddSingleton<MainWindowViewModel>();
+                services.AddTransient<HomeViewModel>();
             });
             return hostBuilder;
         }

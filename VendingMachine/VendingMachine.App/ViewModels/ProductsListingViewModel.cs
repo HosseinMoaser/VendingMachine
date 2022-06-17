@@ -14,12 +14,26 @@ namespace VendingMachine.App.ViewModels
 
         private ProductsListingItemViewModel _selectedProductsListingItemViewModel;
 
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                _isSelected = value;
+                OnPropertyChanged(nameof(IsSelected));
+            }
+        }
         public ProductsListingItemViewModel SelectedProductsListingItemViewModel
         {
             get { return _selectedProductsListingItemViewModel; }
             set
             {
                 _selectedProductsListingItemViewModel = value;
+                if (_selectedProductsListingItemViewModel != null)
+                    IsSelected = true;
+                else
+                    IsSelected = false;
                 OnPropertyChanged(nameof(SelectedProductsListingItemViewModel));
                 _selectedProductStore.SelectedProduct = _selectedProductsListingItemViewModel?.Product;
             }

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:VendingMachine.App" 
         xmlns:views="clr-namespace:VendingMachine.App.Views" 
         xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
-        xmlns:viewmodels="clr-namespace:VendingMachine.App.ViewModels"
+        xmlns:viewmodels="clr-namespace:VendingMachine.App.ViewModels" 
+        xmlns:components="clr-namespace:VendingMachine.App.Components"
         mc:Ignorable="d" FontSize ="14" Icon="/Images/SimpleLogo.png"
         Title="Vending Machine" Height="600" Width="850">
     <Window.Resources>
@@ -18,39 +19,40 @@
             <views:OrderView/>
         </DataTemplate>
     </Window.Resources>
-    
-    
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-         <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="E-Corp Vendin Machine" Style="{StaticResource PageHeader}" Margin="5 10"/>
-            <Ellipse Grid.Column="1" Height="40" Width="40" HorizontalAlignment="Right" Margin="5 0">
-                <Ellipse.Fill>
-                    <ImageBrush ImageSource="/Images/avatar.png"/>
 
-                </Ellipse.Fill>
-            </Ellipse>
-            <TextBlock Grid.Column="1" Style="{StaticResource PageHeader}" Text="UserName" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="55 0"
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="E-Corp Vendin Machine" Style="{StaticResource PageHeader}" Margin="5 10"/>
+                <Ellipse Grid.Column="1" Height="40" Width="40" HorizontalAlignment="Right" Margin="5 0">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="/Images/avatar.png"/>
+
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock Grid.Column="1" Style="{StaticResource PageHeader}" Text="UserName" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="55 0"
                        FontSize="18"/>
 
-            <Separator Grid.ColumnSpan="2" Background="Red" VerticalAlignment="Bottom"/>
-        </Grid>
+                <Separator Grid.ColumnSpan="2" Background="Red" VerticalAlignment="Bottom"/>
+            </Grid>
 
-        <Grid Grid.Row="1">
+            <Grid Grid.Row="1">
                 <custom:Modal Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
                     <ContentControl Height="350" Width="550" Content="{Binding CurrentModalViewModel}"/>
                 </custom:Modal>
-            <views:HomeView DataContext="{Binding HomeViewModel}"/>
-            <!--<views:OrderView/>-->
+                <views:HomeView DataContext="{Binding HomeViewModel}"/>
+                <!--<components:Spinner/>-->
+                <!--<views:OrderView/>-->
+            </Grid>
         </Grid>
-    </Grid>
     </ScrollViewer>
 </Window>

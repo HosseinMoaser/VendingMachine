@@ -21,7 +21,6 @@ namespace VendingMachine.App.ViewModels
         public string Price => SelectedProduct?.ProductPrice ?? string.Empty;
         public string EstimatedTime => SelectedProduct?.EstimatedTime ?? string.Empty;
         public string Category => SelectedProduct?.ProductCategory ?? string.Empty;
-
         public string ImageName => SelectedProduct?.ImageName ?? string.Empty;
         public BitmapImage ImageSource { 
             get

@@ -1,15 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System.Windows;
+using VendingMachine.App.HostBuilders;
 using VendingMachine.App.Stores;
 using VendingMachine.App.ViewModels;
 using VendingMachine.DataLayer;
-using VendingMachine.Domain.Services;
 
 namespace VendingMachine.App
 {
@@ -18,30 +14,46 @@ namespace VendingMachine.App
     /// </summary>
     public partial class App : Application
     {
-        private readonly SelectedProductStore _selectedProductStore;
-        private readonly ModalNavigationStore _modalNavigationStore;
-        private readonly VendingMachineDBContextFactory _contextFactory;
-        private readonly DataServices _dataServices;
+        private readonly IHost _host;
 
         public App()
         {
-            string connectionString = "Data Source = VendingMachineDB.db";
-            _modalNavigationStore = new ModalNavigationStore();
-            _selectedProductStore = new SelectedProductStore();
-            _contextFactory = new VendingMachineDBContextFactory(new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
-            _dataServices = new DataServices(_contextFactory);
+            _host = Host.CreateDefaultBuilder().
+                AddDBContext().AddStores()
+                .ConfigureServices((context, services) =>
+            {
+                services.AddSingleton<MainWindowViewModel>();
+                services.AddTransient<HomeViewModel>((services) => new HomeViewModel(services.GetRequiredService<SelectedProductStore>(),
+                    services.GetRequiredService<ModalNavigationStore>()));
+
+                services.AddSingleton<MainWindow>((services) => new MainWindow()
+                {
+                    DataContext = services.GetRequiredService<MainWindowViewModel>()
+                });
+            }).Build();
+
         }
         protected override void OnStartup(StartupEventArgs e)
         {
-            using(VendingMachineDBContext context = _contextFactory.CreateDBContext())
+            _host.Start();
+            // Apply migration using host services
+            VendingMachineDBContextFactory contextFactory = _host.Services.GetRequiredService<VendingMachineDBContextFactory>();
+            using (VendingMachineDBContext context = contextFactory.CreateDBContext())
             {
                 context.Database.Migrate();
             }
-            MainWindow = new MainWindow();
-            HomeViewModel homeViewModel = new HomeViewModel(_selectedProductStore, _modalNavigationStore);
-            MainWindow.DataContext = new MainWindowViewModel(homeViewModel, _modalNavigationStore);
+
+
+            MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();
             base.OnStartup(e);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            _host.StopAsync();
+            _host.Dispose();
+            base.OnExit(e);
         }
     }
 }

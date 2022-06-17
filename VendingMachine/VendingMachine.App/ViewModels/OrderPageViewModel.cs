@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using VendingMachine.Domain.Models;
+using System.Windows.Media.Imaging;
+using VendingMachine.DataLayer.Models;
 
 namespace VendingMachine.App.ViewModels
 {
@@ -14,9 +16,9 @@ namespace VendingMachine.App.ViewModels
         public string ProductName
         {
             get { return _productName; }
-            set 
+            set
             {
-                _productName = value; 
+                _productName = value;
             }
         }
 
@@ -24,12 +26,12 @@ namespace VendingMachine.App.ViewModels
         public string ImageName
         {
             get { return _imageName; }
-            set 
-            { 
+            set
+            {
                 _imageName = value;
             }
         }
-
+        public BitmapImage ImageSource { get; set; }
         private bool _isCanceled;
         public bool IsCanceled
         {

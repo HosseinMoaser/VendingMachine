@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VendingMachine.DataLayer.Models;
-using VendingMachine.Domain.Models;
 
 namespace VendingMachine.Domain.Repositories
 {

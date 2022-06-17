@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VendingMachine.Domain.Models;
+using VendingMachine.DataLayer.Models;
 using VendingMachine.App.Stores;
+using VendingMachine.Domain.Models;
+using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace VendingMachine.App.ViewModels
 {
@@ -20,6 +23,14 @@ namespace VendingMachine.App.ViewModels
         public string Category => SelectedProduct?.ProductCategory ?? string.Empty;
 
         public string ImageName => SelectedProduct?.ImageName ?? string.Empty;
+        public BitmapImage ImageSource { 
+            get
+            {
+                if (SelectedProduct != null)
+                    return new BitmapImage(new Uri(Directory.GetCurrentDirectory() + SelectedProduct.ImageName, UriKind.Relative));
+                else
+                    return null;
+            } }
 
         public ProductDetailViewModel(SelectedProductStore selectedProductStore)
         {
@@ -41,6 +52,7 @@ namespace VendingMachine.App.ViewModels
             OnPropertyChanged(nameof(EstimatedTime));
             OnPropertyChanged(nameof(Category));
             OnPropertyChanged(nameof(ImageName));
+            OnPropertyChanged(nameof(ImageSource));
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using VendingMachine.Domain.Models;
+using System.Windows.Media.Imaging;
 using VendingMachine.App.Stores;
 using VendingMachine.App.ViewModels;
 
@@ -32,7 +33,8 @@ namespace VendingMachine.App.Commands
             ICommand backToHomeCommand = new BackFromModalCommand(_modalNavigationStore);
             OrderPageViewModel orderViewModel = new OrderPageViewModel(null, backToHomeCommand)
             {
-                ImageName = _productsListingViewModel.SelectedProductsListingItemViewModel.ImageName,
+                ImageSource = new BitmapImage(new Uri(Directory.GetCurrentDirectory() +
+                _productsListingViewModel.SelectedProductsListingItemViewModel.ImageName, UriKind.Relative)),
                 ProductName = _productsListingViewModel.SelectedProductsListingItemViewModel.ProductName,
             };
             _modalNavigationStore.CurrentViewModel = orderViewModel;

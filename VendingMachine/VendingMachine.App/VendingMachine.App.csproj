@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="SimpleModal.WPF" Version="1.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

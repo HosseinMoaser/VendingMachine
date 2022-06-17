@@ -26,7 +26,7 @@
                     <Grid Grid.Column="0">
                         <Ellipse Height="160" Width="160">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Images/lemon_tea.jpg"/>
+                                <ImageBrush ImageSource="{Binding ImageSource}"/>
                             </Ellipse.Fill>
                         </Ellipse>
                     </Grid>

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VendingMachine.Domain.Models;
 using VendingMachine.App.Stores;
+using VendingMachine.Domain.Models;
 
 namespace VendingMachine.App.ViewModels
 {
@@ -21,7 +17,7 @@ namespace VendingMachine.App.ViewModels
         public ProductsListingItemViewModel SelectedProductsListingItemViewModel
         {
             get { return _selectedProductsListingItemViewModel; }
-            set 
+            set
             {
                 _selectedProductsListingItemViewModel = value;
                 OnPropertyChanged(nameof(SelectedProductsListingItemViewModel));
@@ -33,10 +29,10 @@ namespace VendingMachine.App.ViewModels
         public ProductsListingViewModel(SelectedProductStore selectedProductStore)
         {
             _productsListingItemViewModels = new ObservableCollection<ProductsListingItemViewModel>();
-            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Hot Chocolate", "50$","Cold","10 sec", "/Images/white_coffee.jpg")));
-            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Coffee", "40$", "Hot", "14 sec", "white_coffee.jpg")));
-            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Iced Tea", "55$", "Cold", "18 sec", "white_coffee.jpg")));
-            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Lemon Tea", "34$", "Hot", "16 sec", "lemon_tea.jpg")));
+            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Hot Chocolate", "3.20$", "Cold", "10 sec", "/Images/hot_chocolate.jpg")));
+            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("White Coffee", "2.50$", "Hot", "14 sec", "/Images/white_coffee.jpg")));
+            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Lemon Tea", "4.10$", "Cold", "18 sec", "/Images/lemon_tea.jpg")));
+            _productsListingItemViewModels.Add(new ProductsListingItemViewModel(new Product("Iced Coffee", "3.40$", "Hot", "16 sec", "/Images/iced_coffee.png")));
             _selectedProductStore = selectedProductStore;
         }
 

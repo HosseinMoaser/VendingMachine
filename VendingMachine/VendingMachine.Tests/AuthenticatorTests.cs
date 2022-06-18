@@ -52,8 +52,8 @@ namespace VendingMachine.Tests
             Exception exception = Assert.ThrowsAsync<Exception>(() => _authenticationService.Login(ex_username, ex_password));
 
             //Assert
-            string exception = "Wrong Password";
-            Assert.AreEqual(ex_username, act_Username);
+            string act_exceptionMessage = "Wrong Password";
+            Assert.AreEqual(act_exceptionMessage, exception.Message.ToString());
         }
     }
 }

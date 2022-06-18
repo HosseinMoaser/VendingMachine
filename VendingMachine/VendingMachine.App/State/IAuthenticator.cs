@@ -10,6 +10,7 @@ namespace VendingMachine.App.State
     public interface IAuthenticator
     {
         User User { get; }
-        bool Login(string username, string password);
+        //bool Login(string username, string password);
+        Task<bool> Login(string username, string password);
     }
 }

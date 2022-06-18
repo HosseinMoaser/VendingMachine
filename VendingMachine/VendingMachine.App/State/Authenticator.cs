@@ -28,14 +28,28 @@ namespace VendingMachine.App.State
             }
         }
 
-        public bool Login(string username, string password)
+        //public bool Login(string username, string password)
+        //{
+        //    bool success = true;
+        //    try
+        //    {
+        //        User =  _authenticationService.Login(username, password);
+        //        if (User == null)
+        //            success = false;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        success = false;
+        //    }
+        //    return success;
+        //}
+
+        public async Task<bool> Login(string username, string password)
         {
             bool success = true;
             try
             {
-                User =  _authenticationService.Login(username, password);
-                if (User == null)
-                    success = false;
+                User = await _authenticationService.Login(username, password);
             }
             catch (Exception)
             {

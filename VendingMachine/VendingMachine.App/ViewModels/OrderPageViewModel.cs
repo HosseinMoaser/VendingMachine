@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using VendingMachine.DataLayer.Models;
+using VendingMachine.Domain.Services;
 
 namespace VendingMachine.App.ViewModels
 {
@@ -22,16 +25,8 @@ namespace VendingMachine.App.ViewModels
             }
         }
 
-        private string _imageName;
-        public string ImageName
-        {
-            get { return _imageName; }
-            set
-            {
-                _imageName = value;
-            }
-        }
         public BitmapImage ImageSource { get; set; }
+
         private bool _isCanceled;
         public bool IsCanceled
         {
@@ -44,6 +39,7 @@ namespace VendingMachine.App.ViewModels
                 OnPropertyChanged(nameof(CanBackHome));
             }
         }
+
         private bool _isCancelButtonVisible;
         public bool IsCancelButtonVisible
         {
@@ -57,27 +53,72 @@ namespace VendingMachine.App.ViewModels
                 OnPropertyChanged(nameof(IsCancelButtonVisible));
             }
         }
-        private bool _isCompleted;
 
+        private bool _isCompleted;
         public bool IsCompleted
         {
             get { return _isCompleted; }
             set
             {
                 _isCompleted = value;
-                OnPropertyChanged(nameof(IsCompleted));
+                IsCancelButtonVisible = false;
                 OnPropertyChanged(nameof(CanBackHome));
+                OnPropertyChanged(nameof(IsCompleted));
             }
         }
-        
+
         public bool CanBackHome => IsCompleted || IsCanceled;
+
+        private int _progress;
+        public int Progress
+        {
+            get { return _progress; }
+            set
+            {
+                _progress = value;
+                OnPropertyChanged(nameof(Progress));
+            }
+        }
+
+        public ObservableCollection<string> Steps
+        {
+            get;
+            set;
+        }
+
         public ICommand CancelOrderCommand { get; }
         public ICommand BackToHomeCommand { get; }
+        public ICommand BaseProductPreparingCommand { get; }
 
-        public OrderPageViewModel(ICommand cancelOrderCommand, ICommand backToHomeCommand)
+        public OrderPageViewModel(ICommand cancelOrderCommand, ICommand backToHomeCommand, BaseProductServices productServices)
         {
             CancelOrderCommand = cancelOrderCommand;
             BackToHomeCommand = backToHomeCommand;
+            ApplyService(productServices);
+        }
+
+        private async void ApplyService(BaseProductServices productServices)
+        {
+            List<Action> actions = productServices.CreateService();
+            Progress = 100 / actions.Count;
+            int step = 100 / actions.Count;
+            foreach (Action service in actions)
+            {
+                // This is simulation for each service..
+                // services could be replace with various
+                // implementations in domain layer
+                    await Task.Run(() =>
+                    {
+                        if (!_isCanceled)
+                        {
+                            Thread.Sleep(1500);
+                            Progress += step;
+                        }
+                    });
+            }
+
+            if (Progress >= 100)
+                IsCompleted = true;
         }
     }
 }

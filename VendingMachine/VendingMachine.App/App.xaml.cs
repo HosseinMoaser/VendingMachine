@@ -5,17 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
-using VendingMachine.App.Commands;
 using VendingMachine.App.HostBuilders;
 using VendingMachine.App.State;
-using VendingMachine.App.Stores;
 using VendingMachine.App.ViewModels;
 using VendingMachine.DataLayer;
 using VendingMachine.DataLayer.Models;
 using VendingMachine.Domain.Repositories;
 using VendingMachine.Domain.Services;
-
 namespace VendingMachine.App
 {
     /// <summary>
@@ -29,16 +25,18 @@ namespace VendingMachine.App
         {
             _host = Host.CreateDefaultBuilder().
                 AddDBContext().AddStores().AddViewModels()
+                .AddProductsServices()
                 .ConfigureServices((context, services) =>
-            {               
+            {
                 services.AddSingleton<IAuthenticationServices, AuthenticationServices>();
-                services.AddSingleton<IAuthenticator, Authenticator>();
+                services.AddSingleton<IAccountServices, AccountServices>();
+                services.AddSingleton<IAccountServices, AccountServices>();
                 services.AddSingleton<Authenticator>();
                 services.AddScoped<DataServices>();
                 services.AddSingleton<MainWindow>((services) => new MainWindow()
                 {
                     DataContext = services.GetRequiredService<MainWindowViewModel>()
-                }) ;
+                });
             }).Build();
 
         }
@@ -56,8 +54,8 @@ namespace VendingMachine.App
 
             await AddSampleUser();
 
-            
-            if (authenticator.Login("HosseinMsr", "12345"))
+
+            if (await authenticator.Login("HosseinMsr", "12345"))
             {
                 MainWindow = _host.Services.GetRequiredService<MainWindow>();
                 ((MainWindowViewModel)MainWindow.DataContext).Authenticator = authenticator;
@@ -75,9 +73,9 @@ namespace VendingMachine.App
         private async Task AddSampleUser()
         {
             IDataServices dataServices = _host.Services.GetRequiredService<DataServices>();
-             IEnumerable<User> users = await dataServices.GetAllUsers();
+            IEnumerable<User> users = await dataServices.GetAllUsers();
             if (!users.Any())
-                await dataServices.Create(new User() { UserName="HosseinMsr",Passwword="12345"});
+                await dataServices.Create(new User() { UserName = "HosseinMsr", Passwword = "12345" });
         }
         protected override void OnExit(ExitEventArgs e)
         {

@@ -5,11 +5,13 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.App", "VendingMachine.App\VendingMachine.App.csproj", "{AA1D4EFA-F437-4995-B13A-52A129D7A408}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.DataLayer", "VendingMachine.DataLayer\VendingMachine.DataLayer.csproj", "{5A954113-87DB-4808-9971-02577D735E89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.DataLayer", "VendingMachine.DataLayer\VendingMachine.DataLayer.csproj", "{5A954113-87DB-4808-9971-02577D735E89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Domain", "VendingMachine.Domain\VendingMachine.Domain.csproj", "{1B5BCBEC-8E51-4180-BC20-8271610C1BAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Domain", "VendingMachine.Domain\VendingMachine.Domain.csproj", "{1B5BCBEC-8E51-4180-BC20-8271610C1BAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Tests", "VendingMachine.Tests\VendingMachine.Tests.csproj", "{20341990-CFBC-4024-99BC-83A211721CC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Tests", "VendingMachine.Tests\VendingMachine.Tests.csproj", "{20341990-CFBC-4024-99BC-83A211721CC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardProgressBarLibrary", "WizardProgressBarLibrary\WizardProgressBarLibrary.csproj", "{C1633BDB-6A45-4ED1-BB3D-3B7E58E55FBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,14 @@ Global
 		{20341990-CFBC-4024-99BC-83A211721CC7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{20341990-CFBC-4024-99BC-83A211721CC7}.Release|x64.ActiveCfg = Release|x64
 		{20341990-CFBC-4024-99BC-83A211721CC7}.Release|x64.Build.0 = Release|x64
+		{C1633BDB-6A45-4ED1-BB3D-3B7E58E55FBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1633BDB-6A45-4ED1-BB3D-3B7E58E55FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1633BDB-6A45-4ED1-BB3D-3B7E58E55FBB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C1633BDB-6A45-4ED1-BB3D-3B7E58E55FBB}.Debug|x64.Build.0 = Debug|Any CPU
+		{C1633BDB-6A45-4ED1-BB3D-3B7E58E55FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1633BDB-6A45-4ED1-BB3D-3B7E58E55FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1633BDB-6A45-4ED1-BB3D-3B7E58E55FBB}.Release|x64.ActiveCfg = Release|Any CPU
+		{C1633BDB-6A45-4ED1-BB3D-3B7E58E55FBB}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

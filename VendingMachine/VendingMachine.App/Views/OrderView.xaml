@@ -3,69 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:VendingMachine.App.Views" xmlns:components="clr-namespace:VendingMachine.App.Components"
+             xmlns:local="clr-namespace:VendingMachine.App.Views" xmlns:components="clr-namespace:VendingMachine.App.Components" xmlns:controls="clr-namespace:WizardProgressBarLibrary;assembly=WizardProgressBarLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
-    
+
     <Grid>
         <Border BorderBrush="{StaticResource BorderPrimary}" BorderThickness="1" CornerRadius="5" 
                 Padding="20" SnapsToDevicePixels="True">
             <Grid>
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <Grid Grid.Row="0">
                     <TextBlock Text="Please Wait While Your Order Being Prepared.." Style="{StaticResource PageHeader}" FontSize="16"/>
                     <Button HorizontalAlignment="Right" Content="Back" Command="{Binding BackToHomeCommand}" FontFamily="Comic Sans MS"
                             IsEnabled="{Binding CanBackHome}" Cursor="Hand"/>
                 </Grid>
-                
+
                 <Grid Grid.Row="1">
-                    
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <Grid Grid.Column="0">
-                        <Ellipse Height="160" Width="160">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20*"/>
+                        </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="1" Margin="5">
+                        <Ellipse Height="120" Width="120" VerticalAlignment="Top" Margin="0 15">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="{Binding ImageSource}"/>
                             </Ellipse.Fill>
                         </Ellipse>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <ListBox HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" BorderThickness="0">
-                            <ListViewItem Content="Add Boil Water"/>
-                            <ListViewItem Content="Add Coffee"/>
-                            <ListViewItem Content="Add Milk"/>
-                            <ListViewItem Content="Add Lemon"/>
-                            <ListViewItem Content="Delivery"/>
-                        </ListBox>
+
+                        <controls:WizardProgressBar Foreground="#2a3d82" Margin="0 60" ItemsSource="{Binding Steps}" FontSize="13"
+                                    SnapsToDevicePixels="True" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                                    Progress="{Binding Progress}"/>
 
                         <Button Content="Cancel Order" Style="{StaticResource ButtonSecondary}" VerticalAlignment="Bottom" 
-                                HorizontalAlignment="Right" Margin="10 20" FontWeight="Bold" Cursor="Hand"
+                                HorizontalAlignment="Center" FontWeight="Bold" Cursor="Hand"
                                 Grid.ColumnSpan="2" Command="{Binding CancelOrderCommand}"
                                 Visibility="{Binding IsCancelButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                         <Button Content="Order Canceled" Style="{StaticResource ButtonSecondary}" VerticalAlignment="Bottom" 
-                                HorizontalAlignment="Right" Margin="10 20" FontWeight="Bold" Background="Red" Grid.ColumnSpan="2"
+                                HorizontalAlignment="Center"  FontWeight="Bold" Background="Red" Grid.ColumnSpan="2"
                                 Visibility="{Binding IsCanceled, Converter={StaticResource BooleanToVisibilityConverter}}" IsEnabled="False"/>
 
-                        <!--<Button Content="Order Completed" Style="{StaticResource ButtonSecondary}" VerticalAlignment="Bottom"
-                                HorizontalAlignment="Right" Margin="10 20" FontWeight="Bold" Background="Green" Grid.ColumnSpan="2"
-                                Visibility="{Binding IsCanceled, Converter={StaticResource BooleanToVisibilityConverter}}" IsEnabled="False"/>-->
+                        <Button Content="Order Completed" Style="{StaticResource ButtonSecondary}" VerticalAlignment="Bottom"
+                                HorizontalAlignment="Center"  FontWeight="Bold" Background="Green" Grid.ColumnSpan="2"
+                                Visibility="{Binding IsCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" IsEnabled="False"/>
                     </Grid>
                 </Grid>
             </Grid>

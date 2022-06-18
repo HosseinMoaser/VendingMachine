@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:VendingMachine.App.Views" 
         xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
         xmlns:viewmodels="clr-namespace:VendingMachine.App.ViewModels" 
-        xmlns:components="clr-namespace:VendingMachine.App.Components"
+        xmlns:controls="clr-namespace:WizardProgressBarLibrary;assembly=WizardProgressBarLibrary"
         mc:Ignorable="d" FontSize ="14" Icon="/Images/SimpleLogo.png"
         WindowStartupLocation="CenterScreen"
         Title="Vending Machine" Height="600" Width="850">
@@ -22,9 +22,10 @@
         </DataTemplate>
 
     </Window.Resources>
-
+    
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -53,8 +54,6 @@
                     <ContentControl Height="350" Width="550" Content="{Binding CurrentModalViewModel}"/>
                 </custom:Modal>
                 <views:HomeView DataContext="{Binding HomeViewModel}"/>
-                <!--<components:Spinner/>-->
-                <!--<views:OrderView/>-->
             </Grid>
         </Grid>
     </ScrollViewer>

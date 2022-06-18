@@ -4,6 +4,6 @@ namespace VendingMachine.Domain.Repositories
 {
     public interface IAuthenticationServices
     {
-        User Login(string userName, string passWord);
+        Task<User> Login(string userName, string passWord);
     }
 }

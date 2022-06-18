@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\VendingMachine.DataLayer\VendingMachine.DataLayer.csproj" />
     <ProjectReference Include="..\VendingMachine.Domain\VendingMachine.Domain.csproj" />
+    <ProjectReference Include="..\WizardProgressBarLibrary\WizardProgressBarLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>

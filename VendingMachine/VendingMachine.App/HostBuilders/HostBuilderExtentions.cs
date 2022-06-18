@@ -41,5 +41,20 @@ namespace VendingMachine.App.HostBuilders
             });
             return hostBuilder;
         }
+
+        public static IHostBuilder AddProductsServices(this IHostBuilder hostBuilder)
+        {
+            hostBuilder.ConfigureServices((context, services) =>
+            {
+                services.AddSingleton<IBaseProductServices,BaseProductServices>();
+                services.AddSingleton<IHotChocolateServices,HotChocolateServices>();
+                services.AddSingleton<IIcedCoffeeServices,IcedCoffeeServices>();
+                services.AddSingleton<ILemonTeaServices,LemonTeaServices>();
+                services.AddSingleton<IWhiteCoffeeServices,WhiteCoffeeServices>();
+
+            });
+            return hostBuilder;
+        }
     }
 }
+

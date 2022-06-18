@@ -12,19 +12,28 @@ namespace VendingMachine.Domain.Services
 {
     public class AuthenticationServices : IAuthenticationServices
     {
-        private readonly VendingMachineDBContextFactory _contextFactory;
+        private readonly IAccountServices _accountService;
 
-        public AuthenticationServices(VendingMachineDBContextFactory contextFactory)
+        public AuthenticationServices()
         {
-            _contextFactory = contextFactory;
         }
 
-        public User Login(string userName, string passWord)
+        public AuthenticationServices(IAccountServices accountService)
         {
-            using (VendingMachineDBContext db = _contextFactory.CreateDBContext())
-            {
-                return db.Users.FirstOrDefault(u=> u.UserName == userName && u.Passwword==passWord);
-            }
+            _accountService = accountService;
         }
+
+        public async Task<User> Login(string userName, string passWord)
+        {
+            User existsAccount = await _accountService.GetByUserName(userName);
+
+            bool isPasswordMathces = passWord == existsAccount.Passwword;
+
+            if (!isPasswordMathces)
+                throw new Exception("Wrong Password");
+
+            return existsAccount;
+        }
+        
     }
 }

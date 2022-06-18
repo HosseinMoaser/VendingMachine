@@ -117,7 +117,7 @@ namespace VendingMachine.App.ViewModels
                     });
             }
 
-            if (Progress >= 100)
+            if (Progress >= 100 && !IsCanceled)
                 IsCompleted = true;
         }
     }

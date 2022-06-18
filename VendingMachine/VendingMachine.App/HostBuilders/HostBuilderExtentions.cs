@@ -38,6 +38,7 @@ namespace VendingMachine.App.HostBuilders
             {
                 services.AddSingleton<MainWindowViewModel>();
                 services.AddTransient<HomeViewModel>();
+                services.AddTransient<OrderPageViewModel>();
             });
             return hostBuilder;
         }

@@ -45,6 +45,7 @@ namespace VendingMachine.App
             _host.Start();
             // Apply migration using host services
             VendingMachineDBContextFactory contextFactory = _host.Services.GetRequiredService<VendingMachineDBContextFactory>();
+            
             IAuthenticator authenticator = _host.Services.GetRequiredService<Authenticator>();
 
             using (VendingMachineDBContext context = contextFactory.CreateDBContext())
@@ -52,9 +53,10 @@ namespace VendingMachine.App
                 context.Database.Migrate();
             }
 
+            // Add User If Doesn't Exists
             await AddSampleUser();
 
-
+            // Login Simulation
             if (await authenticator.Login("HosseinMsr", "12345"))
             {
                 MainWindow = _host.Services.GetRequiredService<MainWindow>();
